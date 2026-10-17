@@ -1,0 +1,88 @@
+:root {
+  --bg: hsl(240, 25%, 8%);
+  --card: hsla(240, 20%, 16%, 0.55);
+  --border: hsla(0, 0%, 100%, 0.08);
+  --text: hsl(240, 20%, 94%);
+  --muted: hsl(240, 10%, 62%);
+  --accent: hsl(265, 90%, 66%);
+  --accent-2: hsl(190, 90%, 55%);
+  --danger: hsl(350, 85%, 62%);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Outfit', system-ui, sans-serif;
+  background: var(--bg); color: var(--text);
+  min-height: 100vh; display: grid; place-items: center;
+  padding: 24px; overflow-x: hidden;
+}
+.bg-orb { position: fixed; border-radius: 50%; filter: blur(90px); opacity: .55; z-index: -1; animation: float 14s ease-in-out infinite; }
+.orb-1 { width: 420px; height: 420px; background: var(--accent); top: -120px; left: -100px; }
+.orb-2 { width: 380px; height: 380px; background: var(--accent-2); bottom: -120px; right: -80px; animation-delay: -7s; }
+@keyframes float { 50% { transform: translate(40px, 30px) scale(1.1); } }
+
+.card {
+  width: 100%; max-width: 520px; padding: 36px;
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: 24px; backdrop-filter: blur(24px);
+  box-shadow: 0 30px 60px -20px rgba(0,0,0,.6);
+}
+h1 {
+  font-size: 2.4rem; font-weight: 700;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.subtitle { color: var(--muted); margin-top: 4px; }
+
+form { display: flex; gap: 10px; margin: 28px 0 18px; }
+#todo-input {
+  flex: 1; padding: 14px 18px; border-radius: 14px;
+  border: 1px solid var(--border); background: hsla(240,20%,10%,.6);
+  color: var(--text); font: inherit; font-size: 1rem; outline: none; transition: border .2s, box-shadow .2s;
+}
+#todo-input:focus { border-color: var(--accent); box-shadow: 0 0 0 4px hsla(265,90%,66%,.2); }
+#add-btn {
+  width: 52px; border: none; border-radius: 14px; cursor: pointer;
+  font-size: 1.8rem; color: white;
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  transition: transform .15s, box-shadow .2s;
+}
+#add-btn:hover { transform: translateY(-2px) rotate(90deg); box-shadow: 0 10px 24px -8px var(--accent); }
+
+.filters { display: flex; gap: 8px; margin-bottom: 16px; }
+.filter {
+  padding: 6px 14px; border-radius: 999px; border: 1px solid var(--border);
+  background: transparent; color: var(--muted); font: inherit; cursor: pointer; transition: all .2s;
+}
+.filter:hover { color: var(--text); }
+.filter.active { background: hsla(265,90%,66%,.18); color: var(--text); border-color: var(--accent); }
+
+#todo-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+.todo {
+  display: flex; align-items: center; gap: 14px; padding: 14px 16px;
+  background: hsla(240,20%,12%,.6); border: 1px solid var(--border); border-radius: 14px;
+  animation: slideIn .3s ease; transition: transform .2s, border-color .2s;
+}
+.todo:hover { transform: translateX(4px); border-color: hsla(265,90%,66%,.4); }
+.todo.removing { animation: slideOut .25s ease forwards; }
+@keyframes slideIn { from { opacity: 0; transform: translateY(-8px); } }
+@keyframes slideOut { to { opacity: 0; transform: translateX(30px); } }
+
+.check {
+  width: 22px; height: 22px; flex-shrink: 0; border-radius: 50%;
+  border: 2px solid var(--muted); background: transparent; cursor: pointer;
+  display: grid; place-items: center; color: white; font-size: .75rem; transition: all .2s;
+}
+.todo.done .check { background: linear-gradient(135deg, var(--accent), var(--accent-2)); border-color: transparent; }
+.text { flex: 1; word-break: break-word; transition: color .2s; }
+.todo.done .text { color: var(--muted); text-decoration: line-through; }
+.delete {
+  border: none; background: none; color: var(--muted); font-size: 1.2rem; cursor: pointer;
+  opacity: 0; transition: opacity .2s, color .2s;
+}
+.todo:hover .delete { opacity: 1; }
+.delete:hover { color: var(--danger); }
+
+.empty { text-align: center; color: var(--muted); padding: 28px 0; display: none; }
+footer { display: flex; justify-content: space-between; align-items: center; margin-top: 20px; color: var(--muted); font-size: .9rem; }
+#clear-done { background: none; border: none; color: var(--muted); font: inherit; cursor: pointer; }
+#clear-done:hover { color: var(--danger); }

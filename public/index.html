@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tasks — A Simple Node.js To-Do List</title>
+  <meta name="description" content="A simple to-do list app built with Node.js. Add, finish, filter and delete tasks." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <div class="bg-orb orb-1"></div>
+  <div class="bg-orb orb-2"></div>
+  <main class="card">
+    <header>
+      <h1>My Tasks</h1>
+      <p id="date" class="subtitle"></p>
+    </header>
+
+    <form id="todo-form">
+      <input id="todo-input" type="text" placeholder="What needs to be done?" autocomplete="off" maxlength="200" />
+      <button id="add-btn" type="submit" aria-label="Add task">+</button>
+    </form>
+
+    <nav class="filters">
+      <button class="filter active" data-filter="all" id="filter-all">All</button>
+      <button class="filter" data-filter="active" id="filter-active">Active</button>
+      <button class="filter" data-filter="done" id="filter-done">Done</button>
+    </nav>
+
+    <ul id="todo-list"></ul>
+    <p id="empty" class="empty">Nothing here yet. Add a task above.</p>
+
+    <footer>
+      <span id="count">0 tasks left</span>
+      <button id="clear-done">Clear done</button>
+    </footer>
+  </main>
+  <script src="/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+{
+  "name": "to-do-list-node",
+  "version": "1.0.0",
+  "description": "A simple to-do list app built with Node.js",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "license": "MIT"
+}
